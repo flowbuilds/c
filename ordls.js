@@ -229,7 +229,7 @@ function lsListingCheck(lsId) {
 												if(b < a[0]) {x = false}
 											}
 											else if(a[1] == "-") {
-												if(b > a[1]) {x = false}
+												if(b > a[0]) {x = false}
 											}
 										}
 									}
@@ -357,6 +357,7 @@ lsRef.forEach((ls, lsId) => {
 	// datepickers
 	if(ls.cont.querySelector("[data-ls-date]")) {
 		lsToArray(ls.cont.querySelectorAll("[data-ls-date]")).forEach((e, i) => {
+			e.setAttribute("readonly", "true");
 			let x = e.getAttribute("data-ls-date");
 			if(!isNaN(x)) {x = Number(x)}
 			else {x = i + 100}
@@ -369,7 +370,7 @@ lsRef.forEach((ls, lsId) => {
 					let v = date.toDateString().replace(/^\S+\s/, "");
 					input.value = v
 				}
-			}))
+			}));
 		})
 	}
 	// options // filters // listings // counters // updaters
