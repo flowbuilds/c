@@ -369,7 +369,8 @@ lsRef.forEach((ls, lsId) => {
 					let v = date.toDateString().replace(/^\S+\s/, "");
 					input.value = v
 				}
-			}))
+			}));
+			e.readonly = true
 		})
 	}
 	// options // filters // listings // counters // updaters
@@ -528,7 +529,7 @@ lsRef.forEach((ls, lsId) => {
 		lsDatawait(lsId, true);
 		if(ls.datawait.type == "selected") {setTimeout(() => {lsApplyFilters(lsId)}, 0)}
 	}
-	else {setTimeout(() => {lsUpdateFilters(lsId)}, 0)}
+	else {setTimeout(() => {lsApplyFilters(lsId)}, 0)}
 	window.addEventListener("resize", () => {lsApplyFilters(lsId)});
 	console.log(lsRef)
 });
