@@ -357,6 +357,7 @@ lsRef.forEach((ls, lsId) => {
 	// datepickers
 	if(ls.cont.querySelector("[data-ls-date]")) {
 		lsToArray(ls.cont.querySelectorAll("[data-ls-date]")).forEach((e, i) => {
+			e.setAttribute("readonly", "true");
 			let x = e.getAttribute("data-ls-date");
 			if(!isNaN(x)) {x = Number(x)}
 			else {x = i + 100}
@@ -370,7 +371,6 @@ lsRef.forEach((ls, lsId) => {
 					input.value = v
 				}
 			}));
-			e.readonly = true
 		})
 	}
 	// options // filters // listings // counters // updaters
