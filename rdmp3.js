@@ -49,6 +49,7 @@ function mapboxMapsSetup(container) {
 	// Map
 	var mapOptions = mapboxMapsFormatOptions(data.mapboxOptions, {"container": container.id});
 	var map = new mapboxgl.Map(mapOptions);
+	map.addControl(new mapboxgl.NavigationControl());
 	var bounds;
 	// Markers
 	if(data.mapboxMarkers) {
@@ -78,7 +79,8 @@ function mapboxMapsSetup(container) {
 		}
 		mapboxMapsAddMarker(map, marker)
 	})}
-	if(bounds !== undefined) {map.fitBounds(bounds, {padding: 50})}
+	if(bounds !== undefined) {map.fitBounds(bounds, {padding: 24})}
 }
 
 document.querySelectorAll("[data-mapbox='container']").forEach((container) => {mapboxMapsSetup(container)})
+//
