@@ -1,5 +1,4 @@
 mapboxgl.accessToken = "pk.eyJ1IjoidGhlY2hyaXNlbHNvbiIsImEiOiJjazY2aWMwYW4wNHN3M2xwajVwdXg5bnZwIn0.qN17abkQA21Ry6Bu2PbMBA";
-var mapboxMaps = [];
 
 function mapboxMapsAncestor(el, selector) {
 	let parent = el.parentNode;
@@ -50,14 +49,18 @@ function mapboxMapsSetup(container) {
 	// Map
 	var mapOptions = mapboxMapsFormatOptions(data.mapboxOptions, {"container": container.id});
 	var map = new mapboxgl.Map(mapOptions);
+	var bounds;
 	// Markers
-	if(data.mapboxMarkers) {document.querySelectorAll(data.mapboxMarkers).forEach((dataEl) => {
+	if(data.mapboxMarkers) {
+		bounds = new mapboxgl.LngLatBounds();
+		document.querySelectorAll(data.mapboxMarkers).forEach((dataEl) => {
 		mData = dataEl.dataset;
 		let marker = {
 			"class": mData.mapboxClass,
 			"coordinates": [mData.mapboxLng, mData.mapboxLat],
 			"options": {}
 		}
+		bounds.extend(marker.coordinates);
 		// Options
 		if(mData.mapboxOptions) {marker.options = mapboxMapsFormatOptions(mData.mapboxOptions)}
 		// ID
@@ -75,7 +78,7 @@ function mapboxMapsSetup(container) {
 		}
 		mapboxMapsAddMarker(map, marker)
 	})}
+	if(bounds !== undefined) {map.fitBounds(bounds, {padding: 24})}
 }
 
-document.querySelectorAll("[data-mapbox='container']").forEach((container) => {mapboxMapsSetup(container)});
-console.log(mapboxMaps)
+document.querySelectorAll("[data-mapbox='container']").forEach((container) => {mapboxMapsSetup(container)})
