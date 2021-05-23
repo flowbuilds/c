@@ -78,7 +78,7 @@ function mapboxMapsSetup(container) {
 		}
 		mapboxMapsAddMarker(map, marker)
 	})}
-	if(bounds !== undefined) {map.fitBounds(bounds, {padding: 24})}
+	if(bounds !== undefined) {map.fitBounds(bounds, {padding: 50})}
 }
 
 document.querySelectorAll("[data-mapbox='container']").forEach((container) => {mapboxMapsSetup(container)})
