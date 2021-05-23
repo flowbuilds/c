@@ -77,4 +77,5 @@ function mapboxMapsSetup(container) {
 	})}
 }
 
-document.querySelectorAll("[data-mapbox='container']").forEach((container) => {mapboxMapsSetup(container)})
+document.querySelectorAll("[data-mapbox='container']").forEach((container) => {mapboxMapsSetup(container)});
+console.log(mapboxMaps)
