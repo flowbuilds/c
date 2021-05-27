@@ -55,7 +55,19 @@ function ssQzRedirectSet(x, ac, qz) {
 					if(y.el.checked == false) {return}}
 				if(z.includes("path")) {
 					let c = y.el.value;
-					if(ac.includes("poco")) {c = ssQzPocoChk(c)}
+					if(ac.includes("poco")) {
+						c = ssQzPocoChk(c);
+						if(ac.includes("loco")) {
+							let d = x.el.getAttribute("name");
+							if(x.hasOwnProperty("options") && x.options.hasOwnProperty("name")) {d = x.options.name}
+							if(c != "") {qz.loco[d] = c}
+							else {delete qz.loco[d]}
+							let e = JSON.stringify(qz.loco);
+							if(e.length >= 3) {localStorage.setItem("ssqz", e)}
+							else {localStorage.removeItem("ssqz")}
+							ssQzRef.forEach(f => {f.loco = qz.loco})
+						}
+					}
 					if(c != "") {a += "/" + c}
 				}
 				if(z.includes("param")) {
