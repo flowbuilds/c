@@ -204,7 +204,7 @@ function ssQzCalcSet(x, qz) {
 			console.log(y);
 			if(typeof y == "number") {
 				if(x.options.hasOwnProperty("heightpercent")) {
-					y = Math.round(y / Number(x.options.heightpercent));
+					y = Math.round((y / Number(x.options.heightpercent)) * 100);
 					console.log("heightpercent calc: " + y);
 					x.el.style.height = "" + y + "%"
 				}
