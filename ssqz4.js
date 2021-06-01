@@ -201,9 +201,11 @@ function ssQzCalcSet(x, qz) {
 				}
 			}
 			else {y = eval(y)}
+			console.log(y);
 			if(typeof y == "number") {
 				if(x.options.hasOwnProperty("heightpercent")) {
 					y = Math.round(y / Number(x.options.heightpercent));
+					console.log("heightpercent calc: " + y);
 					x.el.style.height = "" + y + "%"
 				}
 				else {
