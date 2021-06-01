@@ -43,6 +43,30 @@ function ssQzPocoChk(x) {
 	return z
 }
 
+/*function ssQzRedirectSet(x, ac, qz) {
+	if(x === undefined || ac === undefined || qz === undefined) {return}
+	if(!x.hasOwnProperty("el") || !qz.hasOwnProperty("input") || !qz.hasOwnProperty("form")) {return}
+	let a = "", b = "?", c = true;
+	qz.input.forEach(y => {
+		if(y.el.hasAttribute("data-ss-qz-action")) {
+			let z = y.el.getAttribute("data-ss-qz-action");
+			if(z.includes("redirect")) {
+				if(y.el.type == "radio" || y.el.type == "checkbox") {
+					if(y.el.checked == false) {return}}
+				if(z.includes("path")) {}
+				if(z.includes("param") && y.el.value != "") {
+					let d = y.el.getAttribute("name");
+					if(y.hasOwnProperty("options") && y.options.hasOwnProperty("name")) {
+						d = y.options.name}
+					if(b != "?") {d = "&" + c}
+					b += c + "=" y.el.value
+				}
+			}
+		}
+	});
+	//
+}*/
+
 function ssQzRedirectSet(x, ac, qz) {
 	if(x === undefined || ac === undefined || qz === undefined) {return}
 	if(!x.hasOwnProperty("el") || !qz.hasOwnProperty("input") || !qz.hasOwnProperty("form")) {return}
@@ -54,7 +78,7 @@ function ssQzRedirectSet(x, ac, qz) {
 				if(y.el.type == "radio" || y.el.type == "checkbox") {
 					if(y.el.checked == false) {return}}
 				if(z.includes("path")) {
-					let c = y.el.value;
+					let c = "y.el.value";
 					if(ac.includes("poco")) {
 						c = ssQzPocoChk(c);
 						if(ac.includes("loco")) {
@@ -129,21 +153,17 @@ function ssQzCalcSet(x, qz) {
 								e = qz.loco[e]
 							}
 						}
-						if(d == e) {console.log("CALCMATCH"); z = b.options}
+						if(d == e) {z = b.options}
 					}
 				}
 			})
 		}
 	}
 	//
-	console.log(y);
-	console.log(z);
 	if(z !== undefined) {
 		for(a in z) {
 			if(y.includes(a)) {
-				console.log("y includes a: " + a)
 				let b = z[a];
-				console.log("b = " + b);
 				if(b.includes("[loco]")) {
 					b = b.replace("[loco]", "");
 					if(qz.hasOwnProperty("loco") && qz.loco.hasOwnProperty(b)) {
@@ -155,7 +175,6 @@ function ssQzCalcSet(x, qz) {
 					b = b.replace("%", "");
 					b = Number(b) / 100
 				}
-				console.log("b = " + b);
 				while(y.includes(a)) {y = y.replace(a, b)}
 			}
 		}
@@ -165,38 +184,37 @@ function ssQzCalcSet(x, qz) {
 				if(y.includes("[compoundtotal]")) {
 					c = 0; y = y.replace("[compoundtotal]", "")}
 				else {y = y.replace("[compound]", "")}
-				//y = y.replace("[compound]", "");
 				y = y.split(":");
 				if(!isNaN(y[0])) {
 					b = Number(y[0]);
 					y.splice(0, 1);
 				}
 				if(y.length == 2 && typeof y[0] == "string" && !isNaN(y[1])) {
-					console.log(y);
 					y = [eval(y[0]), Number(y[1])];
 					if(c !== undefined) {c += y[0]}
-					console.log("initial y = " + y);
-					console.log("initial c = " + c);
 					for(let i = 0; i < b - 1; i++) {
 						y[0] = y[0] + (y[0] * y[1]);
 						if(c !== undefined) {c += y[0]}
-						console.log("yr" + (i + 2) + " = " + y[0]);
-						console.log("total = " + c)
 					}
 					if(c !== undefined) {y = c}
 					else {y = y[0]}
-					//y = y[0];
 				}
 			}
 			else {y = eval(y)}
-			//y = eval(y);
 			if(typeof y == "number") {
-				y = Math.round(y);
-				x.el.textContent = y
+				if(x.options.hasOwnProperty("heightpercent")) {
+					y = Math.round(y / Number(x.options.heightpercent));
+					x.el.style.height = "" + y + "%"
+				}
+				else {
+					y = Math.round(y);
+					x.el.textContent = y
+				}
+				//y = Math.round(y);
+				//x.el.textContent = y
 			}
 		}
 	}
-	console.log(y)
 }
 
 function ssQzActions(x, qz) {
