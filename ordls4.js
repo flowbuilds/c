@@ -157,20 +157,21 @@ function lsUpdateListings(lsId) {
 				if(!e.hasAttribute("data-ls-status")) {
 					e.setAttribute("data-ls-status", "active")}
 				if(e.getAttribute("data-ls-status") == "active") {
-					x++;
+					x++; a = true;
 					if(y != undefined) {
 						if(x >= y[0] && x <= y[1]) {z = true}}
 					else {z = true}
 				}
-				else {a = true}
 				lsActiveInactive(e, z);
 				// map marker
 				if(e.querySelector("[data-mapbox-id]")) {
 					let f = e.querySelector("[data-mapbox-id]");
 					let g = document.getElementById(f.getAttribute("data-mapbox-id"));
-					if(f.hasAttribute("data-mapbox-pg") && a) {
+					/*if(f.hasAttribute("data-mapbox-pg") && a === true) {
 						if(f.getAttribute("data-mapbox-pg").toLowercase() == "false") {z = false}
-					}
+					}*/
+					if(f.hasAttribute("data-mapbox-pg") && f.getAttribute("data-mapbox-pg") == "false") {
+						if(a) {z = true}}
 					//let f = document.getElementById(e.querySelector("[data-mapbox-id]").getAttribute("data-mapbox-id"));
 					lsActiveInactive(g, z)
 				}
