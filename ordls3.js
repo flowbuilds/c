@@ -153,7 +153,7 @@ function lsUpdateListings(lsId) {
 			if(ls.hasOwnProperty("pg")) {
 				y = [(ls.pg.max * (ls.pg.page - 1)) + 1, ls.pg.max * ls.pg.page]}
 			ls.listings.forEach(e => {
-				let z = false;
+				let z = false, a = false;
 				if(!e.hasAttribute("data-ls-status")) {
 					e.setAttribute("data-ls-status", "active")}
 				if(e.getAttribute("data-ls-status") == "active") {
@@ -162,15 +162,17 @@ function lsUpdateListings(lsId) {
 						if(x >= y[0] && x <= y[1]) {z = true}}
 					else {z = true}
 				}
+				else {a = true}
 				lsActiveInactive(e, z);
 				// map marker
 				if(e.querySelector("[data-mapbox-id]")) {
 					let f = e.querySelector("[data-mapbox-id]");
 					let g = document.getElementById(f.getAttribute("data-mapbox-id"));
-					if(f.hasAttribute("data-mapbox-pg") && f.getAttribute("data-mapbox-pg").toLowercase() == "false") {
-						z = true}
+					if(f.hasAttribute("data-mapbox-pg") && a) {
+						if(f.getAttribute("data-mapbox-pg").toLowercase() == "false") {z = false}
+					}
 					//let f = document.getElementById(e.querySelector("[data-mapbox-id]").getAttribute("data-mapbox-id"));
-					lsActiveInactive(f, z)
+					lsActiveInactive(g, z)
 				}
 			});
 			if(ls.hasOwnProperty("pg")) {lsUpdatePg(lsId)}
