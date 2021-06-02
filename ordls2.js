@@ -165,7 +165,11 @@ function lsUpdateListings(lsId) {
 				lsActiveInactive(e, z);
 				// map marker
 				if(e.querySelector("[data-mapbox-id]")) {
-					let f = document.getElementById(e.querySelector("[data-mapbox-id]").getAttribute("data-mapbox-id"));
+					let f = e.querySelector("[data-mapbox-id]");
+					let g = document.getElementById(f.getAttribute("data-mapbox-id"));
+					if(f.hasAttribute("data-mapbox-pg") && f.getAttribute("data-mapbox-pg").toLowercase() == "false") {
+						z = true}
+					//let f = document.getElementById(e.querySelector("[data-mapbox-id]").getAttribute("data-mapbox-id"));
 					lsActiveInactive(f, z)
 				}
 			});
