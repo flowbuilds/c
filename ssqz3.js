@@ -43,14 +43,14 @@ function ssQzPocoChk(x) {
 	return z
 }
 
-function ssQzRedirectSet(x, ac, qz) {
+/*function ssQzRedirectSet(x, ac, qz) {
 	if(x === undefined || ac === undefined || qz === undefined) {return}
 	if(!x.hasOwnProperty("el") || !qz.hasOwnProperty("input") || !qz.hasOwnProperty("form")) {return}
 	let a = "", b = "?";
 	qz.input.forEach(y => {
 		if(y.el.hasAttribute("data-ss-qz-action") && y.el.value != "")
 	})
-}
+}*/
 
 /*function ssQzRedirectSet(x, ac, qz) {
 	if(x === undefined || ac === undefined || qz === undefined) {return}
