@@ -221,7 +221,7 @@ function ssQzLocoPop(x, qz) {
 	if(x.hasOwnProperty("options") && x.options.hasOwnProperty("name")) {y = x.options.name}
 	if(qz.hasOwnProperty("loco") && qz.loco.hasOwnProperty(y)) {
 		if(x.el.type == "radio" || x.el.type == "checkbox") {
-			if(x.el.value == qz.loco[y]) {setTimeout(() => {x.el.checked = true}, 100)}
+			if(x.el.value == qz.loco[y]) {console.log("TRUE: " + x.el.value); setTimeout(() => {x.el.checked = true}, 100)}
 		}
 		else {x.el.value = qz.loco[y]}
 	}
