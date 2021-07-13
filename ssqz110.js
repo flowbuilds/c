@@ -43,6 +43,39 @@ function ssQzPocoChk(x) {
 	return z
 }
 
+/*function ssQzRedirectSet(x, ac, qz) {
+	if(x === undefined || ac === undefined || qz === undefined) {return}
+	if(!x.hasOwnProperty("el") || !qz.hasOwnProperty("input") || !qz.hasOwnProperty("form")) {return}
+	let a = "", b = "?";
+	qz.input.forEach(y => {
+		if(y.el.hasAttribute("data-ss-qz-action") && y.el.value != "")
+	})
+}*/
+
+/*function ssQzRedirectSet(x, ac, qz) {
+	if(x === undefined || ac === undefined || qz === undefined) {return}
+	if(!x.hasOwnProperty("el") || !qz.hasOwnProperty("input") || !qz.hasOwnProperty("form")) {return}
+	let a = "", b = "?", c = true;
+	qz.input.forEach(y => {
+		if(y.el.hasAttribute("data-ss-qz-action")) {
+			let z = y.el.getAttribute("data-ss-qz-action");
+			if(z.includes("redirect")) {
+				if(y.el.type == "radio" || y.el.type == "checkbox") {
+					if(y.el.checked == false) {return}}
+				if(z.includes("path")) {}
+				if(z.includes("param") && y.el.value != "") {
+					let d = y.el.getAttribute("name");
+					if(y.hasOwnProperty("options") && y.options.hasOwnProperty("name")) {
+						d = y.options.name}
+					if(b != "?") {d = "&" + c}
+					b += c + "=" y.el.value
+				}
+			}
+		}
+	});
+	//
+}*/
+
 function ssQzRedirectSet(x, ac, qz) {
 	if(x === undefined || ac === undefined || qz === undefined) {return}
 	if(!x.hasOwnProperty("el") || !qz.hasOwnProperty("input") || !qz.hasOwnProperty("form")) {return}
@@ -54,7 +87,7 @@ function ssQzRedirectSet(x, ac, qz) {
 				if(y.el.type == "radio" || y.el.type == "checkbox") {
 					if(y.el.checked == false) {return}}
 				if(z.includes("path")) {
-					let c = "y.el.value";
+					let c = y.el.value;
 					if(ac.includes("poco")) {
 						c = ssQzPocoChk(c);
 						if(ac.includes("loco")) {
@@ -218,7 +251,10 @@ function ssQzLocoPop(x, qz) {
 	if(!x.hasOwnProperty("el") || 
 		x.hasOwnProperty("el") && x.el.getAttribute("data-ss-qz") != "input") {return}
 	let y = x.el.name;
-	if(x.hasOwnProperty("options") && x.options.hasOwnProperty("name")) {y = x.options.name}
+	if(x.hasOwnProperty("options")) {
+		if(x.options.hasOwnProperty("autofill") && x.options.autofill == "false") {return}
+		if(x.options.hasOwnProperty("name")) {y = x.options.name}
+	}
 	if(qz.hasOwnProperty("loco") && qz.loco.hasOwnProperty(y)) {
 		if(x.el.type == "radio" || x.el.type == "checkbox") {
 			if(x.el.value == qz.loco[y]) {window.addEventListener("load", () => {x.el.click()})}
