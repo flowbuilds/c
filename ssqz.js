@@ -43,30 +43,6 @@ function ssQzPocoChk(x) {
 	return z
 }
 
-/*function ssQzRedirectSet(x, ac, qz) {
-	if(x === undefined || ac === undefined || qz === undefined) {return}
-	if(!x.hasOwnProperty("el") || !qz.hasOwnProperty("input") || !qz.hasOwnProperty("form")) {return}
-	let a = "", b = "?", c = true;
-	qz.input.forEach(y => {
-		if(y.el.hasAttribute("data-ss-qz-action")) {
-			let z = y.el.getAttribute("data-ss-qz-action");
-			if(z.includes("redirect")) {
-				if(y.el.type == "radio" || y.el.type == "checkbox") {
-					if(y.el.checked == false) {return}}
-				if(z.includes("path")) {}
-				if(z.includes("param") && y.el.value != "") {
-					let d = y.el.getAttribute("name");
-					if(y.hasOwnProperty("options") && y.options.hasOwnProperty("name")) {
-						d = y.options.name}
-					if(b != "?") {d = "&" + c}
-					b += c + "=" y.el.value
-				}
-			}
-		}
-	});
-	//
-}*/
-
 function ssQzRedirectSet(x, ac, qz) {
 	if(x === undefined || ac === undefined || qz === undefined) {return}
 	if(!x.hasOwnProperty("el") || !qz.hasOwnProperty("input") || !qz.hasOwnProperty("form")) {return}
@@ -245,7 +221,7 @@ function ssQzLocoPop(x, qz) {
 	if(x.hasOwnProperty("options") && x.options.hasOwnProperty("name")) {y = x.options.name}
 	if(qz.hasOwnProperty("loco") && qz.loco.hasOwnProperty(y)) {
 		if(x.el.type == "radio" || x.el.type == "checkbox") {
-			if(x.el.value == qz.loco[y]) {x.el.click()}
+			if(x.el.value == qz.loco[y]) {/*x.el.click()*/x.el.checked = true}
 		}
 		else {x.el.value = qz.loco[y]}
 	}
