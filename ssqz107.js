@@ -223,7 +223,7 @@ function ssQzLocoPop(x, qz) {
 		if(x.el.type == "radio" || x.el.type == "checkbox") {
 			if(x.el.value == qz.loco[y]) {
 				console.log("TRUE: " + x.el.value);
-				setTimeout(() => {x.el.checked = true}, 400)
+				setTimeout(() => {x.el.click()}, 400)
 			}
 		}
 		else {x.el.value = qz.loco[y]}
