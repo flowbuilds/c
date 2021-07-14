@@ -43,39 +43,6 @@ function ssQzPocoChk(x) {
 	return z
 }
 
-/*function ssQzRedirectSet(x, ac, qz) {
-	if(x === undefined || ac === undefined || qz === undefined) {return}
-	if(!x.hasOwnProperty("el") || !qz.hasOwnProperty("input") || !qz.hasOwnProperty("form")) {return}
-	let a = "", b = "?";
-	qz.input.forEach(y => {
-		if(y.el.hasAttribute("data-ss-qz-action") && y.el.value != "")
-	})
-}*/
-
-/*function ssQzRedirectSet(x, ac, qz) {
-	if(x === undefined || ac === undefined || qz === undefined) {return}
-	if(!x.hasOwnProperty("el") || !qz.hasOwnProperty("input") || !qz.hasOwnProperty("form")) {return}
-	let a = "", b = "?", c = true;
-	qz.input.forEach(y => {
-		if(y.el.hasAttribute("data-ss-qz-action")) {
-			let z = y.el.getAttribute("data-ss-qz-action");
-			if(z.includes("redirect")) {
-				if(y.el.type == "radio" || y.el.type == "checkbox") {
-					if(y.el.checked == false) {return}}
-				if(z.includes("path")) {}
-				if(z.includes("param") && y.el.value != "") {
-					let d = y.el.getAttribute("name");
-					if(y.hasOwnProperty("options") && y.options.hasOwnProperty("name")) {
-						d = y.options.name}
-					if(b != "?") {d = "&" + c}
-					b += c + "=" y.el.value
-				}
-			}
-		}
-	});
-	//
-}*/
-
 function ssQzRedirectSet(x, ac, qz) {
 	if(x === undefined || ac === undefined || qz === undefined) {return}
 	if(!x.hasOwnProperty("el") || !qz.hasOwnProperty("input") || !qz.hasOwnProperty("form")) {return}
@@ -210,11 +177,9 @@ function ssQzCalcSet(x, qz) {
 				}
 			}
 			else {y = eval(y)}
-			console.log(y);
 			if(typeof y == "number") {
 				if(x.options.hasOwnProperty("heightpercent")) {
 					y = ((y / Number(x.options.heightpercent)) * 100).toFixed(2);
-					console.log("heightpercent calc: " + y);
 					x.el.style.height = y + "%"
 				}
 				else {
