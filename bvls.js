@@ -416,7 +416,7 @@ lsRef.forEach((ls, lsId) => {
 	if(ls.cont.hasAttribute("data-ls-api")) {
 		let x = 1, y = 0, z = ls.cont.getAttribute("data-ls-api"), pg = false;
 		if(ls.hasOwnProperty("listings")) {x = Math.ceil(ls.listings.length / 10); pg = true}
-		for(let i = 0; i < x; i++) {
+		for(let i = 1; i < x; i++) {
 			let a = z; if(pg) {a += "?page=" + i}
 			lsGetApi(a, (err, data) => {
 				y++
