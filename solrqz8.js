@@ -115,14 +115,16 @@ function ssQzSlider(x, qz) {
 				qz.slide.every((z, i) => {
 					if(z.options.hasOwnProperty("current") && z.options.current === true) {
 						if(y == "previous") {
-							if(i >= 1) {
+							console.log("PREVIOUS");
+							if(i > 0) {
 								qz.slide[i].options.current = false;
 								qz.slide[i - 1].options.current = true;
 								console.log(i - 1)
 							}
 						}
 						else if(y == "next") {
-							if(i <= qz.slide.length - 2) {
+							console.log("NEXT");
+							if(i < qz.slide.length - 1) {
 								qz.slide[i].options.current = false;
 								qz.slide[i + 1].options.current = true;
 								console.log(i + 1)
@@ -130,11 +132,19 @@ function ssQzSlider(x, qz) {
 						}
 						if(qz.hasOwnProperty("stickybutton") && 
 							qz.hasOwnProperty("next") && qz.hasOwnProperty("submit")) {
+							console.log("TEXTUPDATE");
 							qz.stickybutton.forEach(a => {
 								let b = a.el.querySelector("[data-ss-qz-sb='text']");
+								console.log(b);
 								if(b !== null) {
-									if(i === qz.slide.length - 1) {b.textContent = qz.submit[0].el.value}
-									else {b.textContent = qz.next[0].el.firstChild.textContent}
+									if(i == qz.slide.length - 1) {
+										console.log(qz.submit[0].el.value);
+										b.textContent = qz.submit[0].el.value
+									}
+									else {
+										console.log(qz.next[0].el.firstChild.textContent);
+										b.textContent = qz.next[0].el.firstChild.textContent
+									}
 								}
 							})
 						}
