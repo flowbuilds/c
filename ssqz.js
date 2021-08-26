@@ -54,7 +54,7 @@ function ssQzRedirectSet(x, ac, qz) {
 				if(y.el.type == "radio" || y.el.type == "checkbox") {
 					if(y.el.checked == false) {return}}
 				if(z.includes("path")) {
-					let c = "y.el.value";
+					let c = y.el.value;
 					if(ac.includes("poco")) {
 						c = ssQzPocoChk(c);
 						if(ac.includes("loco")) {
@@ -242,11 +242,9 @@ function ssQzCalcSet(x, qz) {
 				}
 			}
 			else {y = eval(y)}
-			console.log(y);
 			if(typeof y == "number") {
 				if(x.options.hasOwnProperty("heightpercent")) {
 					y = ((y / Number(x.options.heightpercent)) * 100).toFixed(2);
-					console.log("heightpercent calc: " + y);
 					x.el.style.height = y + "%"
 				}
 				else {
@@ -283,7 +281,10 @@ function ssQzLocoPop(x, qz) {
 	if(!x.hasOwnProperty("el") || 
 		x.hasOwnProperty("el") && x.el.getAttribute("data-ss-qz") != "input") {return}
 	let y = x.el.name;
-	if(x.hasOwnProperty("options") && x.options.hasOwnProperty("name")) {y = x.options.name}
+	if(x.hasOwnProperty("options")) {
+		if(x.options.hasOwnProperty("autofill") && x.options.autofill == "false") {return}
+		if(x.options.hasOwnProperty("name")) {y = x.options.name}
+	}
 	if(qz.hasOwnProperty("loco") && qz.loco.hasOwnProperty(y)) {
 		if(x.el.type == "radio" || x.el.type == "checkbox") {
 			if(x.el.value == qz.loco[y]) {window.addEventListener("load", () => {x.el.click()})}
