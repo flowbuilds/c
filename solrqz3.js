@@ -149,12 +149,12 @@ function ssQzSlider(x, qz) {
 					qz.slide.forEach((z, i) => {
 						if(z.hasOwnProperty("options") && 
 							z.options.hasOwnProperty("current") && z.options.current === true) {
-							if(i === qz.slide.length - 1) {qz.submit.forEach(a => {a.click()})}
-							else {qz.next.forEach(a => {a.click()})}
+							if(i === qz.slide.length - 1) {qz.submit.forEach(a => {a.el.click()})}
+							else {qz.next.forEach(a => {a.el.click()})}
 						}
 					})
 				}
-				else {qz.submit.forEach(z => {z.click()})}
+				else {qz.submit.forEach(z => {z.el.click()})}
 			}
 		})
 	}
