@@ -129,7 +129,7 @@ function ssQzSlider(x, qz) {
 						if(qz.hasOwnProperty("stickybutton") && 
 							qz.hasOwnProperty("next") && qz.hasOwnProperty("submit")) {
 							qz.stickybutton.forEach(a => {
-								let b = a.querySelector("[data-ss-qz-sb='text']");
+								let b = a.el.querySelector("[data-ss-qz-sb='text']");
 								if(b !== null) {
 									if(i === qz.slide.length - 1) {b.textContent = qz.submit[0].el.value}
 									else {b.textContent = qz.next[0].el.firstChild.textContent}
