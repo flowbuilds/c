@@ -115,75 +115,23 @@ function ssQzSlider(x, qz) {
 				qz.slide.every((z, i) => {
 					if(z.options.hasOwnProperty("current") && z.options.current === true) {
 						let a = false, b = 0;
-						if(y == "previous") {
-							console.log("PREVIOUS");
-							if(i > 0) {a = true; b = i - 1}
-						}
-						else if(y == "next") {
-							console.log("NEXT");
-							if(i < qz.slide.length - 1) {a = true; b = i + 1}
-						}
+						if(y == "previous") {if(i > 0) {a = true; b = i - 1}}
+						else if(y == "next") {if(i < qz.slide.length - 1) {a = true; b = i + 1}}
 						if(a) {
 							qz.slide[i].options.current = false;
 							qz.slide[b].options.current = true;
-							// UPDATE TEXT
 							if(qz.hasOwnProperty("stickybutton") && 
 								qz.hasOwnProperty("next") && qz.hasOwnProperty("submit")) {
-								console.log("TEXTUPDATE");
 								qz.stickybutton.forEach(c => {
 									let d = c.el.querySelector("[data-ss-qz-sb='text']");
-									console.log(d);
 									if(d !== null) {
-										if(b == qz.slide.length - 1) {
-											console.log(qz.submit[0].el.value);
-											d.textContent = qz.submit[0].el.value
-										}
-										else {
-											console.log(qz.next[0].el.firstChild.textContent);
-											d.textContent = qz.next[0].el.firstChild.textContent
-										}
+										if(b == qz.slide.length - 1) {d.textContent = qz.submit[0].el.value}
+										else {d.textContent = qz.next[0].el.firstChild.textContent}
 									}
 								})
 							}
 							return false
 						}
-						//
-						//
-						/*if(y == "previous") {
-							console.log("PREVIOUS");
-							if(i > 0) {
-								qz.slide[i].options.current = false;
-								qz.slide[i - 1].options.current = true;
-								console.log(i - 1)
-							}
-						}
-						else if(y == "next") {
-							console.log("NEXT");
-							if(i < qz.slide.length - 1) {
-								qz.slide[i].options.current = false;
-								qz.slide[i + 1].options.current = true;
-								console.log(i + 1)
-							}
-						}
-						if(qz.hasOwnProperty("stickybutton") && 
-							qz.hasOwnProperty("next") && qz.hasOwnProperty("submit")) {
-							console.log("TEXTUPDATE");
-							qz.stickybutton.forEach(a => {
-								let b = a.el.querySelector("[data-ss-qz-sb='text']");
-								console.log(b);
-								if(b !== null) {
-									if(i == qz.slide.length - 1) {
-										console.log(qz.submit[0].el.value);
-										b.textContent = qz.submit[0].el.value
-									}
-									else {
-										console.log(qz.next[0].el.firstChild.textContent);
-										b.textContent = qz.next[0].el.firstChild.textContent
-									}
-								}
-							})
-						}
-						return false*/
 					}
 					return true
 				})
