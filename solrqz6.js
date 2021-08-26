@@ -138,7 +138,6 @@ function ssQzSlider(x, qz) {
 						}
 						return false
 					}
-					return true
 				})
 			})
 		}
@@ -155,7 +154,6 @@ function ssQzSlider(x, qz) {
 							else {qz.next.forEach(a => {a.el.click()})}
 							return false
 						}
-						return true
 					})
 				}
 				else {qz.submit.forEach(z => {z.el.click()})}
