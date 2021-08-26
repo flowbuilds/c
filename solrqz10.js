@@ -128,7 +128,7 @@ function ssQzSlider(x, qz) {
 							qz.slide[b].options.current = true;
 							// UPDATE TEXT
 							if(qz.hasOwnProperty("stickybutton") && 
-								&& qz.hasOwnProperty("next") && qz.hasOwnProperty("submit")) {
+								qz.hasOwnProperty("next") && qz.hasOwnProperty("submit")) {
 								console.log("TEXTUPDATE");
 								qz.stickybutton.forEach(c => {
 									let d = c.el.querySelector("[data-ss-qz-sb='text']");
