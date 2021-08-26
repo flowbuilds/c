@@ -112,7 +112,7 @@ function ssQzSlider(x, qz) {
 	else if(y == "previous" || y == "next") {
 		if(qz.hasOwnProperty("slide")) {
 			x.el.addEventListener("click", () => {
-				qz.slide.forEach((z, i) => {
+				qz.slide.every((z, i) => {
 					if(z.options.hasOwnProperty("current") && z.options.current === true) {
 						if(y == "previous") {
 							if(i >= 1) {
@@ -136,7 +136,9 @@ function ssQzSlider(x, qz) {
 								}
 							})
 						}
+						return false
 					}
+					return true
 				})
 			})
 		}
@@ -146,12 +148,14 @@ function ssQzSlider(x, qz) {
 		x.el.addEventListener("click", () => {
 			if(qz.hasOwnProperty("submit")) {
 				if(qz.hasOwnProperty("next") && qz.hasOwnProperty("slide")) {
-					qz.slide.forEach((z, i) => {
+					qz.slide.every((z, i) => {
 						if(z.hasOwnProperty("options") && 
 							z.options.hasOwnProperty("current") && z.options.current === true) {
 							if(i === qz.slide.length - 1) {qz.submit.forEach(a => {a.el.click()})}
 							else {qz.next.forEach(a => {a.el.click()})}
+							return false
 						}
+						return true
 					})
 				}
 				else {qz.submit.forEach(z => {z.el.click()})}
