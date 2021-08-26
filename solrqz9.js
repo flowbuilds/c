@@ -114,7 +114,42 @@ function ssQzSlider(x, qz) {
 			x.el.addEventListener("click", () => {
 				qz.slide.every((z, i) => {
 					if(z.options.hasOwnProperty("current") && z.options.current === true) {
+						let a = false, b = 0;
 						if(y == "previous") {
+							console.log("PREVIOUS");
+							if(i > 0) {a = true; b = i - 1}
+						}
+						else if(y == "next") {
+							console.log("NEXT");
+							if(i < qz.slide.length - 1) {a = true; b = i + 1}
+						}
+						if(a) {
+							qz.slide[i].options.current = false;
+							qz.slide[b].options.current = true;
+							// UPDATE TEXT
+							if(qz.hasOwnProperty("stickybutton") && 
+								&& qz.hasOwnProperty("next") && qz.hasOwnProperty("submit")) {
+								console.log("TEXTUPDATE");
+								qz.stickybutton.forEach(c => {
+									let d = c.el.querySelector("[data-ss-qz-sb='text']");
+									console.log(d);
+									if(d !== null) {
+										if(b == qz.slide.length - 1) {
+											console.log(qz.submit[0].el.value);
+											d.textContent = qz.submit[0].el.value
+										}
+										else {
+											console.log(qz.next[0].el.firstChild.textContent);
+											d.textContent = qz.next[0].el.firstChild.textContent
+										}
+									}
+								})
+							}
+							return false
+						}
+						//
+						//
+						/*if(y == "previous") {
 							console.log("PREVIOUS");
 							if(i > 0) {
 								qz.slide[i].options.current = false;
@@ -148,8 +183,9 @@ function ssQzSlider(x, qz) {
 								}
 							})
 						}
-						return false
+						return false*/
 					}
+					return true
 				})
 			})
 		}
@@ -166,6 +202,7 @@ function ssQzSlider(x, qz) {
 							else {qz.next.forEach(a => {a.el.click()})}
 							return false
 						}
+						return true
 					})
 				}
 				else {qz.submit.forEach(z => {z.el.click()})}
