@@ -117,13 +117,15 @@ function ssQzSlider(x, qz) {
 						if(y == "previous") {
 							if(i >= 1) {
 								qz.slide[i].options.current = false;
-								qz.slide[i - 1].options.current = true
+								qz.slide[i - 1].options.current = true;
+								console.log(i - 1)
 							}
 						}
 						else if(y == "next") {
 							if(i <= qz.slide.length - 2) {
 								qz.slide[i].options.current = false;
-								qz.slide[i + 1].options.current = true
+								qz.slide[i + 1].options.current = true;
+								console.log(i + 1)
 							}
 						}
 						if(qz.hasOwnProperty("stickybutton") && 
