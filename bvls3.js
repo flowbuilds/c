@@ -117,7 +117,7 @@ function lsUpdatePg(lsId) {
 						x = ls.pg.numbers[i];
 						x[j].setAttribute("data-ls-pg-num", j + 1);
 						update(x[j], (j + 1 == ls.pg.page));
-						le  t y = x[j];
+						let y = x[j];
 						if(y.querySelector("[data-ls-pg='numtext']")) {
 							y.querySelector("[data-ls-pg='numtext']").textContent = j + 1}
 						else {y.textContent = j = 1}
