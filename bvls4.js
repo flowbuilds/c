@@ -179,12 +179,14 @@ function lsUpdateListings(lsId) {
 
 function lsDateCheck(lsId, e) {
 	if(lsId === undefined || e === undefined) {return true}
+	console.log("DATECHECK");
 	let ac = true;
 	lsRef.forEach(ls => {
 		if(ls.id == lsId && ls.hasOwnProperty("data") && e.querySelector("[data-ls-filter-name]")) {
 			let a = e.querySelector("[data-ls-filter-name]").getAttribute("data-ls-filter-name"), b;
+			console.log(a);
 			if(ls.data.hasOwnProperty("properties")) {
-				ls.data.properties.forEach(c => {if(c.name == a) {b = c.calendars; return}})}
+				ls.data.properties.forEach(c => {if(c.name == a) {b = c.calendars; /*return*/}})}
 			else {if(ls.data.name == a) {b = ls.data.calendars}}
 			if(b !== undefined) {
 				b.forEach(c => {
