@@ -117,7 +117,7 @@ function lsUpdatePg(lsId) {
 						x = ls.pg.numbers[i];
 						x[j].setAttribute("data-ls-pg-num", j + 1);
 						update(x[j], (j + 1 == ls.pg.page));
-						let y = x[j];
+						le  t y = x[j];
 						if(y.querySelector("[data-ls-pg='numtext']")) {
 							y.querySelector("[data-ls-pg='numtext']").textContent = j + 1}
 						else {y.textContent = j = 1}
@@ -153,11 +153,11 @@ function lsUpdateListings(lsId) {
 			if(ls.hasOwnProperty("pg")) {
 				y = [(ls.pg.max * (ls.pg.page - 1)) + 1, ls.pg.max * ls.pg.page]}
 			ls.listings.forEach(e => {
-				let z = false;
+				let z = false, a = false;
 				if(!e.hasAttribute("data-ls-status")) {
 					e.setAttribute("data-ls-status", "active")}
 				if(e.getAttribute("data-ls-status") == "active") {
-					x++;
+					x++; a = true;
 					if(y != undefined) {
 						if(x >= y[0] && x <= y[1]) {z = true}}
 					else {z = true}
@@ -165,8 +165,11 @@ function lsUpdateListings(lsId) {
 				lsActiveInactive(e, z);
 				// map marker
 				if(e.querySelector("[data-mapbox-id]")) {
-					let f = document.getElementById(e.querySelector("[data-mapbox-id]").getAttribute("data-mapbox-id"));
-					lsActiveInactive(f, z)
+					let f = e.querySelector("[data-mapbox-id]");
+					let g = document.getElementById(f.getAttribute("data-mapbox-id"));
+					if(f.hasAttribute("data-mapbox-pg") && f.getAttribute("data-mapbox-pg") == "false") {
+						if(a) {z = true}}
+					lsActiveInactive(g, z)
 				}
 			});
 			if(ls.hasOwnProperty("pg")) {lsUpdatePg(lsId)}
@@ -229,7 +232,7 @@ function lsListingCheck(lsId) {
 												if(b < a[0]) {x = false}
 											}
 											else if(a[1] == "-") {
-												if(b > a[1]) {x = false}
+												if(b > a[0]) {x = false}
 											}
 										}
 									}
@@ -348,12 +351,12 @@ lsRef.forEach((ls, lsId) => {
 	lsRef[lsId] = {"cont": ls, "id": lsId, "activeListings": -1}
 	ls = lsRef[lsId];
 	// API request
-	/*if(ls.cont.hasAttribute("data-ls-api")) {
+	if(ls.cont.hasAttribute("data-ls-api")) {
 		lsGetApi(ls.cont.getAttribute("data-ls-api"), (err, data) => {
 			if(err !== null) {console.log("API GET Request error: " + err)}
 			else {ls.data = data; lsDatawait(lsId, false)}
 		})
-	}*/
+	}
 	// datepickers
 	if(ls.cont.querySelector("[data-ls-date]")) {
 		lsToArray(ls.cont.querySelectorAll("[data-ls-date]")).forEach((e, i) => {
@@ -413,10 +416,10 @@ lsRef.forEach((ls, lsId) => {
 			e.addEventListener("click", () => {lsApplyFilters(lsId)})})
 	}
 	// API request(s)
-	if(ls.cont.hasAttribute("data-ls-api")) {
+	/*if(ls.cont.hasAttribute("data-ls-api")) {
 		let x = 1, y = 0, z = ls.cont.getAttribute("data-ls-api"), pg = false;
 		if(ls.hasOwnProperty("listings")) {x = Math.ceil(ls.listings.length / 10); pg = true}
-		for(let i = 1; i < x; i++) {
+		for(let i = 0; i < x; i++) {
 			let a = z; if(pg) {a += "?page=" + i}
 			lsGetApi(a, (err, data) => {
 				y++
@@ -438,7 +441,7 @@ lsRef.forEach((ls, lsId) => {
 				}
 			})
 		}
-	}
+	}*/
 	// datawait setup
 	let datawait = false;
 	if(ls.cont.hasAttribute("data-ls-api-wait")) {
