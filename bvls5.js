@@ -188,6 +188,7 @@ function lsDateCheck(lsId, e) {
 			if(ls.data.hasOwnProperty("properties")) {
 				ls.data.properties.forEach(c => {if(c.name == a) {b = c.calendars; /*return*/}})}
 			else {if(ls.data.name == a) {b = ls.data.calendars}}
+			console.log(b);
 			if(b !== undefined) {
 				b.forEach(c => {
 					if(c.hasOwnProperty("events")) {
