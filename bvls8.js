@@ -179,9 +179,10 @@ function lsUpdateListings(lsId) {
 
 function lsDateCheck(lsId, e) {
 	if(lsId === undefined || e === undefined) {return true}
-	console.log("DATECHECK");
 	let ac = true;
 	lsRef.forEach(ls => {
+		console.log(ls.activeFilters.start);
+		console.log(ls.activeFilters.end);
 		if(ls.id == lsId && ls.hasOwnProperty("data") && e.querySelector("[data-ls-filter-name]")) {
 			let a = e.querySelector("[data-ls-filter-name]").getAttribute("data-ls-filter-name"), b;
 			console.log(a);
