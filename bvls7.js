@@ -194,9 +194,7 @@ function lsDateCheck(lsId, e) {
 					if(c.hasOwnProperty("events")) {
 						c.events.forEach(d => {
 							let e = [new Date(d.start_time), new Date(d.end_time)];
-							console.log(e);
 							let x = [ls.activeFilters.start, ls.activeFilters.end];
-							console.log(x);
 							x.forEach(y => {
 								if(y >= e[0] && y < e[1]) {console.log("UNAVAILABLE"); ac = false; return}});
 							if(!ac) {console.log("AVAILABLE"); return}
@@ -294,6 +292,7 @@ function lsUpdateFilters(lsId) {
 				}
 			})
 		}
+		console.log(ls.activeFilters)
 	})
 }
 
