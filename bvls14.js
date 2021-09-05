@@ -198,21 +198,25 @@ function lsDateCheck(lsId, e) {
 				}
 			}
 			if(b !== undefined) {
-				b.forEach(c => {
+				b.every(c => {
 					if(c.hasOwnProperty("events")) {
-						c.events.forEach(d => {
+						c.events.every(d => {
 							let e = [new Date(d.start_date), new Date(d.end_date)];
 							let x = [ls.activeFilters.start, ls.activeFilters.end];
-							x.forEach(y => {
+							x.every(y => {
 								if(y >= e[0] && y < e[1]) {
-									//ac = false;
-									return
+									ac = false;
+									return false
 								}
+								return true
 							});
-							if(!ac) {return}
+							if(!ac) {return false}
+							return true
 						});
-						if(!ac) {return}
+						//if(!ac) {return}
 					}
+					if(!ac) {return false}
+					return true
 				})
 			}
 		}
