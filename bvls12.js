@@ -194,7 +194,7 @@ function lsDateCheck(lsId, e) {
 				b.forEach(c => {
 					if(c.hasOwnProperty("events")) {
 						c.events.forEach(d => {
-							let e = [new Date(d.start_time), new Date(d.end_time)];
+							let e = [new Date(d.start_date), new Date(d.end_date)];
 							console.log(e);
 							let x = [ls.activeFilters.start, ls.activeFilters.end];
 							x.forEach(y => {
