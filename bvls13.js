@@ -181,25 +181,35 @@ function lsDateCheck(lsId, e) {
 	if(lsId === undefined || e === undefined) {return true}
 	let ac = true;
 	lsRef.forEach(ls => {
-		console.log(ls.activeFilters.start);
-		console.log(ls.activeFilters.end);
 		if(ls.id == lsId && ls.hasOwnProperty("data") && e.querySelector("[data-ls-filter-name]")) {
 			let a = e.querySelector("[data-ls-filter-name]").getAttribute("data-ls-filter-name"), b;
-			console.log(a);
 			if(ls.data.hasOwnProperty("properties")) {
-				ls.data.properties.forEach(c => {if(c.name == a) {b = c.calendars; /*return*/}})}
-			else {if(ls.data.name == a) {b = ls.data.calendars}}
-			console.log(b);
+				ls.data.properties.every(c => {
+					if(c.name == a) {
+						b = c.calendars;
+						return false
+					}
+					return true
+				})
+			}
+			else if(ls.data.hasOwnProperty("name")) {
+				if(ls.data.name == a) {
+					b = ls.data.calendars
+				}
+			}
 			if(b !== undefined) {
 				b.forEach(c => {
 					if(c.hasOwnProperty("events")) {
 						c.events.forEach(d => {
 							let e = [new Date(d.start_date), new Date(d.end_date)];
-							console.log(e);
 							let x = [ls.activeFilters.start, ls.activeFilters.end];
 							x.forEach(y => {
-								if(y >= e[0] && y < e[1]) {console.log("UNAVAILABLE"); ac = false; return}});
-							if(!ac) {console.log("AVAILABLE"); return}
+								if(y >= e[0] && y < e[1]) {
+									//ac = false;
+									return
+								}
+							});
+							if(!ac) {return}
 						});
 						if(!ac) {return}
 					}
