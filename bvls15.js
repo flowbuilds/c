@@ -213,7 +213,6 @@ function lsDateCheck(lsId, e) {
 							if(!ac) {return false}
 							return true
 						});
-						//if(!ac) {return}
 					}
 					if(!ac) {return false}
 					return true
@@ -239,7 +238,6 @@ function lsListingCheck(lsId) {
 							if(a instanceof Date) {
 								if(z == "start" && ls.activeFilters.hasOwnProperty("end")) {
 									x = lsDateCheck(lsId, e);
-									console.log(x)
 								}
 							}
 							else if(y.hasAttribute("data-ls-filter-" + z)) {
@@ -311,7 +309,6 @@ function lsUpdateFilters(lsId) {
 				}
 			})
 		}
-		console.log(ls.activeFilters)
 	})
 }
 
