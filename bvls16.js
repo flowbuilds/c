@@ -238,6 +238,8 @@ function lsListingCheck(lsId) {
 							if(a instanceof Date) {
 								if(z == "start" && ls.activeFilters.hasOwnProperty("end")) {
 									x = lsDateCheck(lsId, e);
+									console.log(e);
+									console.log(x)
 								}
 							}
 							else if(y.hasAttribute("data-ls-filter-" + z)) {
