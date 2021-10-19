@@ -183,9 +183,11 @@ function lsDateCheck(lsId, e) {
 	lsRef.forEach(ls => {
 		if(ls.id == lsId && ls.hasOwnProperty("data") && e.querySelector("[data-ls-filter-name]")) {
 			let a = e.querySelector("[data-ls-filter-name]").getAttribute("data-ls-filter-name"), b;
+			console.log(a);
 			if(ls.data.hasOwnProperty("properties")) {
 				ls.data.properties.every(c => {
 					if(c.name == a) {
+						console.log(c.name)
 						b = c.calendars;
 						return false
 					}
