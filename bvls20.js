@@ -184,12 +184,10 @@ function lsDateCheck(lsId, e) {
 		if(ls.id == lsId && ls.hasOwnProperty("data") && e.querySelector("[data-ls-filter-name]")) {
 			let a = e.querySelector("[data-ls-filter-name]").getAttribute("data-ls-filter-name"), b;
 			a = a.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-			console.log(a);
 			if(ls.data.hasOwnProperty("properties")) {
 				ls.data.properties.every(c => {
 					let d = c.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 					if(d == a) {
-						console.log(d)
 						b = c.calendars;
 						return false
 					}
@@ -242,7 +240,6 @@ function lsListingCheck(lsId) {
 							if(a instanceof Date) {
 								if(z == "start" && ls.activeFilters.hasOwnProperty("end")) {
 									x = lsDateCheck(lsId, e);
-									console.log(x)
 								}
 							}
 							else if(y.hasAttribute("data-ls-filter-" + z)) {
