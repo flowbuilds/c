@@ -244,7 +244,28 @@ function lsListingCheck(lsId) {
 							}
 							else if(y.hasAttribute("data-ls-filter-" + z)) {
 								let b = y.getAttribute("data-ls-filter-" + z);
+								// range
+								if(typeof a === "object") {
+									if(a.hasOwnProperty("s") && a.hasOwnProperty("e")) {
+										if(!isNaN(a.s) && !isNaN(a.e)) {
+											if(b < a.s || b > a.e) {x = false}
+										}
+										else if(!isNaN(a.s)) {
+											if(a.e == "+") {
+												if(b < a.s) {x = false}
+											}
+											else if(a.e == "-") {
+												if(b > a.s) {x = false}
+											}
+										}
+									}
+								}
+								// multi-check
 								if(Array.isArray(a)) {
+									x = false;
+									a.forEach(c => {if(c == b) {x = true}})
+								}
+								/*if(Array.isArray(a)) {
 									if(a.length == 2) {
 										if(!isNaN(a[0]) && !isNaN(a[1])) {
 											if(b < a[0] || b > a[1]) {x = false}
@@ -258,7 +279,7 @@ function lsListingCheck(lsId) {
 											}
 										}
 									}
-								}
+								}*/
 								else {if(b != a) {x = false}}
 							}
 							if(!x) {break}
@@ -295,19 +316,37 @@ function lsUpdateFilters(lsId) {
 						}
 						else if(y == "date") {x = new Date(x)}
 						else if(y == "range") {
-							if(x.includes("+")) {x = [x.replace("+", ""), "+"]}
+							if(x.includes("+")) {
+								//x = {"s": x.replace("+", ""), "e": "+"}
+								x = [x.replace("+", ""), "+"]
+							}
 							else if(x.includes("-")) {
 								x = x.split("-");
-								x.forEach((z, i) => {if(z == "") {x[i] = "-"}})
+								x.forEach((z, i) => {if(z == "") {x[i] = "-"}});
 							}
-							x.forEach((z, i) => {if(!isNaN(z)) {x[i] = Number(z)}})
+							x.forEach((z, i) => {if(!isNaN(z)) {x[i] = Number(z)}});
+							x = {"s": x[0], "e": x[1]}
 						}
 						else if(y == "checkbox") {
-							if(e.checked == true) {x = "true"}
+							if(e.checked == true) {
+								if(e.hasAttribute("data-ls-value")) {
+									x = e.getAttribute("data-ls-value")
+								}
+								else {x = true}
+								//x = "true"
+							}
 							else {return}
 						}
 					}
-					ls.activeFilters[e.getAttribute("data-ls-filter")] = x
+					let filter = e.getAttribute("data-ls-filter");
+					if(ls.activeFilters.hasOwnProperty(filter)) {
+						if(Array.isArray(ls.activeFilters[filter])) {
+							ls.activeFilters[filter].push(x)
+						}
+						else {ls.activeFilters[filter] = [x]}
+					}
+					else {ls.activeFilters[filter] = x}
+					//ls.activeFilters[e.getAttribute("data-ls-filter")] = x
 				}
 			})
 		}
