@@ -406,6 +406,7 @@ function lsGetApi(url, callback) {
 }
 
 // Initial Setup
+function lsInit() {
 var lsRef = lsToArray(document.querySelectorAll("[data-ls='container']"));
 lsRef.forEach((ls, lsId) => {
 	ls.setAttribute("data-ls-id", lsId);
@@ -597,3 +598,4 @@ lsRef.forEach((ls, lsId) => {
 	window.addEventListener("resize", () => {lsApplyFilters(lsId)});
 	console.log(lsRef)
 });
+}
