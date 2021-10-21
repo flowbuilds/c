@@ -406,8 +406,8 @@ function lsGetApi(url, callback) {
 }
 
 // Initial Setup
-function lsInit() {
 var lsRef = lsToArray(document.querySelectorAll("[data-ls='container']"));
+function lsInit() {
 lsRef.forEach((ls, lsId) => {
 	ls.setAttribute("data-ls-id", lsId);
 	lsRef[lsId] = {"cont": ls, "id": lsId, "activeListings": -1}
