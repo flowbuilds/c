@@ -188,6 +188,7 @@ function lsDateCheck(lsId, e) {
 				ls.data.properties.every(c => {
 					let d = c.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 					if(d == a) {
+						console.log(d);
 						b = c.calendars;
 						return false
 					}
@@ -205,8 +206,12 @@ function lsDateCheck(lsId, e) {
 						c.events.every(d => {
 							let e = [new Date(d.start_date), new Date(d.end_date)];
 							let x = [ls.activeFilters.start, ls.activeFilters.end];
+							console.log(e);
+							console.log(x);
 							x.every(y => {
+								console.log(y);
 								if(y >= e[0] && y < e[1]) {
+									console.log("Unavailable");
 									ac = false;
 									return false
 								}
