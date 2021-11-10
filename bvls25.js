@@ -210,11 +210,11 @@ function lsDateCheck(lsId, e) {
 							//console.log(x);
 							//
 							//
-							if(e.s < x.s && e.e <= x.e) {
+							if(e.s < x.s && e.e <= x.s) {
 								console.log("Avai: e < x");
 								return true
 							}
-							if(e.s >= x.s && e.e > x.e) {
+							if(e.s >= x.e && e.e > x.e) {
 								console.log("Avai: e > x");
 								return true
 							}
