@@ -207,11 +207,18 @@ function lsDateCheck(lsId, e) {
 							let e = {"s": new Date(d.start_date), "e": new Date(d.end_date)};
 							let x = {"s": ls.activeFilters.start, "e": ls.activeFilters.end};
 							console.log(e);
-							console.log(x);
+							//console.log(x);
 							//
 							//
-							if(e.s < x.s && e.e <= x.e) {return true}
-							if(e.s >= x.s && e.e > x.e) {return true}
+							if(e.s < x.s && e.e <= x.e) {
+								console.log("Avai: e < x");
+								return true
+							}
+							if(e.s >= x.s && e.e > x.e) {
+								console.log("Avai: e > x");
+								return true
+							}
+							console.log("Unavailable");
 							ac = false;
 							return false
 							//
