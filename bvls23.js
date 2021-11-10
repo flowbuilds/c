@@ -204,20 +204,27 @@ function lsDateCheck(lsId, e) {
 				b.every(c => {
 					if(c.hasOwnProperty("events")) {
 						c.events.every(d => {
-							let e = [new Date(d.start_date), new Date(d.end_date)];
-							let x = [ls.activeFilters.start, ls.activeFilters.end];
+							let e = {"s": new Date(d.start_date), "e": new Date(d.end_date)};
+							let x = {"s": ls.activeFilters.start, "e": ls.activeFilters.end};
 							console.log(e);
 							console.log(x);
 							//
 							//
-							e.every(f => {
+							if(e.s < x.s && e.e <= x.e) {return true}
+							if(e.s >= x.s && e.e > x.e) {return true}
+							ac = false;
+							return false
+							//
+							//
+							/*e.every(f => {
 								console.log(f);
 								if(f >= x[0] && f < x[1]) {
 									console.log("Unavailable");
 									ac = false;
 									return false
 								}
-							})
+								return true
+							});*/
 							//
 							//
 							/*x.every(y => {
@@ -228,9 +235,9 @@ function lsDateCheck(lsId, e) {
 									return false
 								}
 								return true
-							});*/
+							});
 							if(!ac) {return false}
-							return true
+							return true*/
 						});
 					}
 					if(!ac) {return false}
