@@ -208,7 +208,19 @@ function lsDateCheck(lsId, e) {
 							let x = [ls.activeFilters.start, ls.activeFilters.end];
 							console.log(e);
 							console.log(x);
-							x.every(y => {
+							//
+							//
+							e.every(f => {
+								console.log(f);
+								if(f >= x[0] && f < x[1]) {
+									console.log("Unavailable");
+									ac = false;
+									return false
+								}
+							})
+							//
+							//
+							/*x.every(y => {
 								console.log(y);
 								if(y >= e[0] && y < e[1]) {
 									console.log("Unavailable");
@@ -216,7 +228,7 @@ function lsDateCheck(lsId, e) {
 									return false
 								}
 								return true
-							});
+							});*/
 							if(!ac) {return false}
 							return true
 						});
